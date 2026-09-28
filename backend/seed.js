@@ -473,7 +473,17 @@ async function seed() {
     await Product.deleteMany({});
     console.log('Cleared existing products');
 
-    const created = await Product.insertMany(products);
+    // insertMany skips the pre('save') hook, so build each slug here
+    // using the same rule as the Product model.
+    const withSlugs = products.map((p) => ({
+      ...p,
+      slug: p.name
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/(^-|-$)/g, ''),
+    }));
+
+    const created = await Product.insertMany(withSlugs);
     console.log(`Seeded ${created.length} products`);
   } catch (err) {
     console.error('Seed failed:', err.message);
