@@ -1,8 +1,13 @@
-/* ProductCard */
+/* ProductCard — image, wishlist heart, NEW / % OFF badges,
+   name, price, old price, rating.
+   Cards stretch to equal height in a row; the rating row pins
+   to the bottom so every card's content lines up. */
 
 .card {
   position: relative;
-  display: block;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -20,9 +25,11 @@
   display: block;
   aspect-ratio: 3 / 4;
   background: var(--bg-soft);
+  overflow: hidden;
 }
 
 .media img {
+  display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -35,6 +42,8 @@
   right: 10px;
   display: flex;
   justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
   pointer-events: none;
 }
 
@@ -46,6 +55,7 @@
   padding: 5px 10px;
   border-radius: 999px;
   color: #fff;
+  white-space: nowrap;
 }
 
 .badgeNew {
@@ -59,7 +69,7 @@
 
 .heart {
   position: absolute;
-  top: 44px;
+  top: 46px;
   right: 10px;
   width: 36px;
   height: 36px;
@@ -68,6 +78,7 @@
   background: rgba(255, 255, 255, 0.95);
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   font-size: 1.15rem;
+  line-height: 1;
   color: var(--muted);
   cursor: pointer;
   display: flex;
@@ -86,25 +97,33 @@
 }
 
 .body {
-  padding: 14px 16px 18px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 12px 14px 14px;
+  color: inherit;
+  text-decoration: none;
 }
 
 .name {
   font-size: 0.95rem;
   font-weight: 600;
-  margin-bottom: 8px;
-  /* two-line clamp */
+  line-height: 1.35;
+  margin: 0 0 8px;
+  /* two-line clamp — every card reserves the same space */
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-  min-height: 2.6em;
+  min-height: 2.7em;
 }
 
 .prices {
   display: flex;
   align-items: baseline;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  margin-bottom: 2px;
 }
 
 .price {
@@ -119,11 +138,57 @@
 }
 
 .rating {
-  margin-top: 6px;
+  margin-top: auto;
+  padding-top: 8px;
   font-size: 0.85rem;
   color: var(--gold);
+  white-space: nowrap;
 }
 
 .rating span {
   color: var(--muted);
+}
+
+/* ---------- Small screens ---------- */
+@media (max-width: 640px) {
+  .body {
+    padding: 10px 10px 12px;
+  }
+
+  .name {
+    font-size: 0.83rem;
+    margin-bottom: 6px;
+  }
+
+  .price {
+    font-size: 0.92rem;
+  }
+
+  .old {
+    font-size: 0.75rem;
+  }
+
+  .badges {
+    top: 8px;
+    left: 8px;
+    right: 8px;
+  }
+
+  .badgeNew,
+  .badgeOff {
+    font-size: 0.6rem;
+    padding: 4px 8px;
+  }
+
+  .heart {
+    top: 40px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
+    font-size: 1rem;
+  }
+
+  .rating {
+    font-size: 0.75rem;
+  }
 }

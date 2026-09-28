@@ -9,17 +9,23 @@
   gap: 20px;
   overflow-x: auto;
   scroll-behavior: smooth;
-  padding: 4px 2px 12px;
-  scrollbar-width: thin;
+  scroll-snap-type: x proximity;
+  padding: 4px 2px 16px;
+  scrollbar-width: none;
+}
+
+.row::-webkit-scrollbar {
+  display: none;
 }
 
 .cell {
   flex: 0 0 250px;
+  scroll-snap-align: start;
 }
 
 .arrow {
   position: absolute;
-  top: 38%;
+  top: 34%;
   z-index: 5;
   width: 42px;
   height: 42px;
