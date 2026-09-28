@@ -21,6 +21,59 @@ const NAV_LINKS = [
   { label: 'Sale', href: '/shop?sale=1' },
 ];
 
+// ---------- Clean line icons (professional, no emojis) ----------
+
+function IconBase({ children }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      {children}
+    </svg>
+  );
+}
+
+function SearchIcon() {
+  return (
+    <IconBase>
+      <circle cx="11" cy="11" r="7" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </IconBase>
+  );
+}
+
+function HeartIcon() {
+  return (
+    <IconBase>
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z" />
+    </IconBase>
+  );
+}
+
+function BagIcon() {
+  return (
+    <IconBase>
+      <path d="M5.5 8h13l-1.1 12.1a1 1 0 0 1-1 .9H7.6a1 1 0 0 1-1-.9L5.5 8z" />
+      <path d="M9 10V6a3 3 0 0 1 6 0v4" />
+    </IconBase>
+  );
+}
+
+function UserIcon() {
+  return (
+    <IconBase>
+      <circle cx="12" cy="8" r="4" />
+      <path d="M4 21c0-4 3.6-6.5 8-6.5s8 2.5 8 6.5" />
+    </IconBase>
+  );
+}
+
 export default function Navbar() {
   const { count, setDrawerOpen } = useCart();
   const { user, loading, logout } = useAuth();
@@ -110,7 +163,11 @@ export default function Navbar() {
           onClick={() => setMenuOpen((v) => !v)}
           aria-label="Toggle menu"
         >
-          ☰
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" aria-hidden="true">
+            <line x1="4" y1="7" x2="20" y2="7" />
+            <line x1="4" y1="12" x2="20" y2="12" />
+            <line x1="4" y1="17" x2="20" y2="17" />
+          </svg>
         </button>
 
         <Link href="/" className={styles.logo}>
@@ -141,7 +198,7 @@ export default function Navbar() {
               aria-label="Search products"
             />
             <button type="submit" aria-label="Search">
-              🔍
+              <SearchIcon />
             </button>
           </form>
 
@@ -199,7 +256,7 @@ export default function Navbar() {
           aria-label="Wishlist"
           title="Wishlist"
         >
-          ♥
+          <HeartIcon />
           {wishCount > 0 && <span className={styles.badge}>{wishCount}</span>}
         </Link>
 
@@ -208,7 +265,7 @@ export default function Navbar() {
           onClick={() => setDrawerOpen(true)}
           aria-label="Open cart"
         >
-          🛒
+          <BagIcon />
           {count > 0 && <span className={styles.badge}>{count}</span>}
         </button>
 
@@ -229,7 +286,8 @@ export default function Navbar() {
             </div>
           ) : (
             <Link href="/login" className={styles.authBtn} title="Login or create an account">
-              👤 Login / Sign Up
+              <UserIcon />
+              <span>Login / Sign Up</span>
             </Link>
           ))}
       </nav>

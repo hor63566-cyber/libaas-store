@@ -73,8 +73,8 @@
 
 .search {
   display: flex;
-  border: 2px solid var(--line);
-  border-radius: 999px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
   overflow: hidden;
   background: var(--bg-soft);
   transition: border-color 0.2s ease;
@@ -102,9 +102,16 @@
   border: none;
   background: var(--brand);
   color: #fff;
-  font-size: 1.05rem;
-  padding: 0 20px;
+  padding: 0 16px;
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search button svg {
+  width: 19px;
+  height: 19px;
 }
 
 .search button:hover {
@@ -191,11 +198,18 @@
 
 .iconBtn {
   position: relative;
-  font-size: 1.5rem;
-  padding: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
   color: var(--ink);
   text-decoration: none;
   line-height: 1;
+}
+
+.iconBtn svg {
+  width: 23px;
+  height: 23px;
 }
 
 .iconBtn:hover {
@@ -204,24 +218,44 @@
 
 .cartBtn {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   background: none;
   border: none;
-  font-size: 1.5rem;
   cursor: pointer;
-  padding: 6px;
+  padding: 8px;
+  color: var(--ink);
+}
+
+.cartBtn svg {
+  width: 23px;
+  height: 23px;
+}
+
+.cartBtn:hover {
+  color: var(--brand);
 }
 
 /* ---------- Auth button / logged-in state ---------- */
 
 .authBtn {
-  border: 2px solid var(--brand);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1.5px solid var(--brand);
   color: var(--brand);
   font-size: 0.85rem;
   font-weight: 700;
-  padding: 8px 18px;
-  border-radius: 999px;
+  padding: 9px 16px;
+  border-radius: 8px;
   white-space: nowrap;
   transition: background 0.2s ease, color 0.2s ease;
+}
+
+.authBtn svg {
+  width: 17px;
+  height: 17px;
 }
 
 .authBtn:hover {
@@ -273,13 +307,49 @@
 /* ---------- Mobile ---------- */
 
 @media (max-width: 860px) {
+  .announce {
+    font-size: 0.72rem;
+    padding: 7px 10px;
+  }
+
   .nav {
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px 12px;
+    padding: 10px 0;
+  }
+
+  .logo {
+    font-size: 1.35rem;
+    letter-spacing: 1.5px;
   }
 
   .burger {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    color: var(--ink);
+  }
+
+  .burger svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .iconBtn svg,
+  .cartBtn svg {
+    width: 21px;
+    height: 21px;
+  }
+
+  .authBtn {
+    padding: 7px 12px;
+    font-size: 0.78rem;
+  }
+
+  .authBtn svg {
+    width: 15px;
+    height: 15px;
   }
 
   .links {
