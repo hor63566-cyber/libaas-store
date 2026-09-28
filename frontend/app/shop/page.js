@@ -38,6 +38,7 @@ function ShopInner() {
 
   const [all, setAll] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loadError, setLoadError] = useState(false);
   const [visible, setVisible] = useState(PAGE_SIZE);
 
   // Filters, seeded from the URL
@@ -64,9 +65,12 @@ function ShopInner() {
   }, [params]);
 
   // Fetch once; filter + sort client-side for instant UI
+  // (bump retryKey to try again after a failed load)
+  const [retryKey, setRetryKey] = useState(0);
   useEffect(() => {
     let cancelled = false;
     setLoading(true);
+    setLoadError(false);
     getProducts({})
       .then((data) => {
         if (!cancelled) {
@@ -75,12 +79,15 @@ function ShopInner() {
         }
       })
       .catch(() => {
-        if (!cancelled) setLoading(false);
+        if (!cancelled) {
+          setLoadError(true);
+          setLoading(false);
+        }
       });
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [retryKey]);
 
   // Reset pagination when filters change
   useEffect(() => {
@@ -278,6 +285,13 @@ function ShopInner() {
 
             {loading ? (
               <p className={styles.msg}>Loading products…</p>
+            ) : loadError ? (
+              <div className={styles.empty}>
+                <p>Couldn&apos;t load products. Please check your connection and try again.</p>
+                <button className="btn btn-outline" onClick={() => setRetryKey((k) => k + 1)}>
+                  Retry
+                </button>
+              </div>
             ) : filtered.length === 0 ? (
               <div className={styles.empty}>
                 <p>No products match your filters.</p>

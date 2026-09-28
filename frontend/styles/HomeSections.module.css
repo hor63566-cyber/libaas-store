@@ -65,3 +65,15 @@
     height: 260px;
   }
 }
+
+/* Small phones: fragrance tiles go full-width so the bottles
+   look prominent instead of small and cramped. */
+@media (max-width: 640px) {
+  .gridWide {
+    grid-template-columns: 1fr;
+  }
+
+  .gridWide .card img {
+    height: 320px;
+  }
+}
