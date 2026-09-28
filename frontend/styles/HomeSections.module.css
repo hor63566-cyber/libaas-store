@@ -26,6 +26,14 @@
   transition: transform 0.35s ease;
 }
 
+/* Wide tiles (Fragrances) use tall portrait photos — fit the whole
+   bottle inside the frame instead of cropping its top/bottom. */
+.gridWide .card img {
+  object-fit: contain;
+  background: #ece4d6;
+  padding: 12px 0;
+}
+
 .card:hover img {
   transform: scale(1.05);
 }
