@@ -22,6 +22,7 @@ export default function CheckoutPage() {
   const [errors, setErrors] = useState({});
   const [placing, setPlacing] = useState(false);
   const [orderId, setOrderId] = useState(null);
+  const [orderTotal, setOrderTotal] = useState(0);
   const [apiError, setApiError] = useState('');
 
   const shipping = subtotal === 0 || subtotal >= FREE_SHIP_OVER ? 0 : SHIP_COST;
@@ -85,6 +86,7 @@ export default function CheckoutPage() {
       });
 
       setOrderId(order.orderNumber || order._id);
+      setOrderTotal(total);
       clearCart();
     } catch (err) {
       setApiError(err.message || 'Could not place the order. Please try again.');
@@ -101,7 +103,7 @@ export default function CheckoutPage() {
         <p>
           Thank you! Your order <strong>{orderId}</strong> is confirmed.
         </p>
-        <p>Pay {formatPrice(total)} in cash when your parcel arrives.</p>
+        <p>Pay {formatPrice(orderTotal)} in cash when your parcel arrives.</p>
         <Link href="/shop" className="btn btn-primary">
           Continue Shopping
         </Link>

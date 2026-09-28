@@ -25,7 +25,7 @@ export default async function HomePage() {
     <>
       <HeroSlider />
 
-      <HomeSections />
+      <HomeSections products={all} />
 
       {/* New arrivals carousel */}
       <section className="section" style={{ background: 'var(--bg-soft)' }}>
