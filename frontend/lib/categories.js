@@ -43,6 +43,54 @@ export function categoryLabel(slug) {
   return CATEGORY_LABELS[slug] || slug;
 }
 
+// Nav departments — each one maps to the categories it should show
+// on the shop page (?dept=women etc.)
+export const DEPARTMENTS = {
+  women: {
+    label: 'Women',
+    categories: [
+      'unstitched-summer',
+      'unstitched-embroidered',
+      'unstitched-printed',
+      'unstitched-lawn',
+      'pret-embroidered',
+      'pret-printed',
+      'pret-solids',
+      'pret-coords',
+      'pret-festive',
+      'pret-kurtis',
+      'pret-bottoms',
+      'signature',
+      'silk',
+      'western',
+      'fragrance-women',
+    ],
+  },
+  men: {
+    label: 'Men',
+    categories: ['men-pret', 'fragrance-men'],
+  },
+  accessories: {
+    label: 'Accessories',
+    categories: [
+      'acc-bags',
+      'acc-footwear',
+      'acc-jewelry',
+      'acc-shawls',
+      'acc-scarves',
+      'acc-sunglasses',
+      'acc-hair',
+      'acc-watches',
+      'acc-mufflers',
+      'acc-dupattas',
+    ],
+  },
+};
+
+export function departmentLabel(slug) {
+  return (DEPARTMENTS[slug] && DEPARTMENTS[slug].label) || slug;
+}
+
 // Home page section groupings
 export const UNSTITCHED_TILES = [
   { slug: 'unstitched-summer', tint: 'F6E7D7' },

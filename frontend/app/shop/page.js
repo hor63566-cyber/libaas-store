@@ -11,7 +11,7 @@ import { Suspense, useEffect, useMemo, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import ProductCard from '../../components/ProductCard';
 import { getProducts } from '../../lib/api';
-import { CATEGORY_LABELS, categoryLabel } from '../../lib/categories';
+import { CATEGORY_LABELS, categoryLabel, DEPARTMENTS, departmentLabel } from '../../lib/categories';
 import styles from '../../styles/shop.module.css';
 
 const SORTS = [
@@ -43,10 +43,25 @@ function ShopInner() {
   // Filters, seeded from the URL
   const [search, setSearch] = useState(params.get('search') || '');
   const [category, setCategory] = useState(params.get('category') || '');
+  const [dept, setDept] = useState(params.get('dept') || '');
   const [sort, setSort] = useState(params.get('sort') || '');
   const [priceRange, setPriceRange] = useState('');
   const [size, setSize] = useState('');
   const [saleOnly, setSaleOnly] = useState(params.get('sale') === '1');
+
+  // Re-sync URL-driven filters when the URL changes (e.g. clicking a
+  // different nav link). Same-route navigation does not remount the
+  // page, so without this the old filter state would stick.
+  useEffect(() => {
+    setSearch(params.get('search') || '');
+    setCategory(params.get('category') || '');
+    setDept(params.get('dept') || '');
+    setSort(params.get('sort') || '');
+    setSaleOnly(params.get('sale') === '1');
+    setPriceRange('');
+    setSize('');
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [params]);
 
   // Fetch once; filter + sort client-side for instant UI
   useEffect(() => {
@@ -70,7 +85,7 @@ function ShopInner() {
   // Reset pagination when filters change
   useEffect(() => {
     setVisible(PAGE_SIZE);
-  }, [search, category, sort, priceRange, size, saleOnly]);
+  }, [search, category, dept, sort, priceRange, size, saleOnly]);
 
   const filtered = useMemo(() => {
     let list = [...all];
@@ -84,6 +99,10 @@ function ShopInner() {
       );
     }
     if (category) list = list.filter((p) => p.category === category);
+    if (dept && DEPARTMENTS[dept]) {
+      const deptCats = DEPARTMENTS[dept].categories;
+      list = list.filter((p) => deptCats.includes(p.category));
+    }
     if (saleOnly) {
       list = list.filter((p) => p.oldPrice && p.oldPrice > p.price);
     }
@@ -110,36 +129,40 @@ function ShopInner() {
     }
 
     return list;
-  }, [all, search, category, sort, priceRange, size, saleOnly]);
+  }, [all, search, category, dept, sort, priceRange, size, saleOnly]);
 
   // Keep shareable URL params for the main filters
   useEffect(() => {
     const q = new URLSearchParams();
     if (search) q.set('search', search);
     if (category) q.set('category', category);
+    if (dept) q.set('dept', dept);
     if (sort) q.set('sort', sort);
     if (saleOnly) q.set('sale', '1');
 
     router.replace(`/shop${q.toString() ? `?${q}` : ''}`, { scroll: false });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search, category, sort, saleOnly]);
+  }, [search, category, dept, sort, saleOnly]);
 
   function clearFilters() {
     setSearch('');
     setCategory('');
+    setDept('');
     setSort('');
     setPriceRange('');
     setSize('');
     setSaleOnly(false);
   }
 
-  const hasFilters = search || category || sort || priceRange || size || saleOnly;
+  const hasFilters = search || category || dept || sort || priceRange || size || saleOnly;
   const shown = filtered.slice(0, visible);
   const bannerTitle = saleOnly
     ? 'Sale'
-    : category
-      ? categoryLabel(category)
-      : 'Shop All';
+    : dept
+      ? departmentLabel(dept)
+      : category
+        ? categoryLabel(category)
+        : 'Shop All';
 
   return (
     <>

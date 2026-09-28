@@ -15,9 +15,9 @@ import { getProducts, formatPrice } from '../lib/api';
 import styles from '../styles/Navbar.module.css';
 
 const NAV_LINKS = [
-  { label: 'Women', href: '/shop?category=unstitched-lawn' },
-  { label: 'Men', href: '/shop?category=men-pret' },
-  { label: 'Accessories', href: '/shop?category=acc-bags' },
+  { label: 'Women', href: '/shop?dept=women' },
+  { label: 'Men', href: '/shop?dept=men' },
+  { label: 'Accessories', href: '/shop?dept=accessories' },
   { label: 'Sale', href: '/shop?sale=1' },
 ];
 

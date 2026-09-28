@@ -475,13 +475,19 @@ async function seed() {
 
     // insertMany skips the pre('save') hook, so build each slug here
     // using the same rule as the Product model.
-    const withSlugs = products.map((p) => ({
-      ...p,
-      slug: p.name
+    const withSlugs = products.map((p) => {
+      const slug = p.name
         .toLowerCase()
         .replace(/[^a-z0-9]+/g, '-')
-        .replace(/(^-|-$)/g, ''),
-    }));
+        .replace(/(^-|-$)/g, '');
+      return {
+        ...p,
+        slug,
+        // Real product photos live in the frontend's public folder and
+        // are served from the site root, so a relative path is enough.
+        images: [`/images/products/${slug}.jpg`],
+      };
+    });
 
     const created = await Product.insertMany(withSlugs);
     console.log(`Seeded ${created.length} products`);
