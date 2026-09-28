@@ -27,7 +27,7 @@ export default function ProductCard({ product }) {
 
   return (
     <div className={styles.card}>
-      <Link href={`/product/${product._id}`} className={styles.media}>
+      <Link href={`/product/${product.slug}`} className={styles.media}>
         <img
           src={product.images?.[0] || 'https://placehold.co/600x800?text=Libaas'}
           alt={product.name}
@@ -50,7 +50,7 @@ export default function ProductCard({ product }) {
         {wished ? '♥' : '♡'}
       </button>
 
-      <Link href={`/product/${product._id}`} className={styles.body}>
+      <Link href={`/product/${product.slug}`} className={styles.body}>
         <h3 className={styles.name}>{product.name}</h3>
 
         <div className={styles.prices}>

@@ -40,9 +40,17 @@ router.get('/', async (req, res) => {
 });
 
 // ---------- Single product ----------
+// Accepts either the stable slug (e.g. "rose-embroidered-pret-kurti")
+// or the Mongo _id, so links keep working after a re-seed.
 router.get('/:id', async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const key = req.params.id;
+
+    let product = await Product.findOne({ slug: key });
+
+    if (!product && /^[a-f0-9]{24}$/i.test(key)) {
+      product = await Product.findById(key);
+    }
 
     if (!product) {
       return res.status(404).json({ error: 'Product not found' });
@@ -50,7 +58,7 @@ router.get('/:id', async (req, res) => {
 
     res.json(product);
   } catch (err) {
-    res.status(400).json({ error: 'Invalid product id' });
+    res.status(500).json({ error: 'Could not load product' });
   }
 });
 

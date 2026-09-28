@@ -162,7 +162,7 @@ export default function Navbar() {
                   <button
                     key={p._id}
                     className={styles.suggestion}
-                    onClick={() => goToProduct(p._id)}
+                    onClick={() => goToProduct(p.slug)}
                   >
                     <img
                       src={
