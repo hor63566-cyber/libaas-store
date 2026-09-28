@@ -41,7 +41,7 @@ const SLIDES = [
   },
 ];
 
-const AUTO_MS = 5000;
+const AUTO_MS = 3000;
 
 export default function HeroSlider() {
   const [index, setIndex] = useState(0);
