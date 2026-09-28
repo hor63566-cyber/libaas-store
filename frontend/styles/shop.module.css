@@ -1,0 +1,184 @@
+/* Shop / collection page */
+
+.title {
+  font-size: 1.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.banner {
+  background: linear-gradient(120deg, var(--brand), var(--brand-dark));
+  color: #fff;
+  padding: 44px 0;
+}
+
+.banner h1 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.banner p {
+  opacity: 0.85;
+  font-size: 0.95rem;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+/* ---------- Sidebar ---------- */
+
+.sidebar {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: #fff;
+  position: sticky;
+  top: 130px;
+}
+
+.sideBlock {
+  margin-bottom: 22px;
+}
+
+.sideBlock h3 {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  color: var(--brand);
+}
+
+.sideBlock select {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 0.9rem;
+  font-family: inherit;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.radio {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  padding: 5px 0;
+  cursor: pointer;
+}
+
+.sizeRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sizeChip {
+  border: 1.5px solid var(--line);
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 7px 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.sizeChip.active {
+  border-color: var(--brand);
+  color: var(--brand);
+}
+
+/* ---------- Results ---------- */
+
+.topbar {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.searchInput {
+  flex: 1;
+  padding: 11px 16px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+}
+
+.searchInput:focus {
+  outline: none;
+  border-color: var(--brand);
+}
+
+.topbar select {
+  padding: 11px 14px;
+  font-size: 0.92rem;
+  font-family: inherit;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+}
+
+.count {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.msg,
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 48px 0;
+}
+
+.empty p {
+  margin-bottom: 16px;
+}
+
+.more {
+  text-align: center;
+  margin-top: 32px;
+}
+
+/* Wishlist page extras */
+
+.wishCell {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wishCell :global(.btn) {
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: static;
+  }
+}

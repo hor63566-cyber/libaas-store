@@ -1,0 +1,44 @@
+/* Login / Signup pages */
+
+.wrap {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+
+.card {
+  width: min(440px, 100%);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 36px 32px;
+  background: #fff;
+  box-shadow: var(--shadow);
+}
+
+.card h1 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.sub {
+  color: var(--muted);
+  font-size: 0.92rem;
+  margin-bottom: 24px;
+}
+
+.card :global(.btn) {
+  width: 100%;
+  margin-top: 6px;
+}
+
+.switch {
+  text-align: center;
+  margin-top: 18px;
+  font-size: 0.92rem;
+  color: var(--muted);
+}
+
+.switch a {
+  color: var(--brand);
+  font-weight: 700;
+}

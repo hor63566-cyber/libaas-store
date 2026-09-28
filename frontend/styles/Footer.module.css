@@ -1,0 +1,150 @@
+/* Footer */
+
+.footer {
+  background: #241a1c;
+  color: #d8cfc4;
+  margin-top: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+  gap: 32px;
+  padding: 48px 0 32px;
+}
+
+.brand {
+  color: #fff;
+  font-size: 1.5rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.blurb {
+  font-size: 0.9rem;
+  color: #a89c8e;
+}
+
+.footer h4 {
+  color: #fff;
+  font-size: 0.95rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 14px;
+}
+
+.footer ul {
+  list-style: none;
+}
+
+.footer ul li {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+}
+
+.footer a:hover {
+  color: var(--gold);
+}
+
+.contact li {
+  color: #a89c8e;
+}
+
+.newsletter {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.newsletter input {
+  flex: 1;
+  padding: 10px 12px;
+  border: 1px solid #4a3d3f;
+  border-radius: var(--radius);
+  background: #2f2326;
+  color: #fff;
+  font-family: inherit;
+}
+
+.readMore {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.88rem;
+  font-weight: 700;
+}
+
+.thanks {
+  margin-top: 10px;
+  color: #8fd19a;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.socials {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.socials a {
+  width: 38px;
+  height: 38px;
+  border: 1px solid #4a3d3f;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: #d8cfc4;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.socials a:hover {
+  background: var(--brand);
+  border-color: var(--brand);
+  color: #fff;
+}
+
+.bottom {
+  border-top: 1px solid #3a2d30;
+  font-size: 0.82rem;
+  color: #a89c8e;
+  padding: 18px 0;
+}
+
+.bottomRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.payBadges {
+  display: flex;
+  gap: 8px;
+}
+
+.pay {
+  border: 1px solid #4a3d3f;
+  border-radius: 6px;
+  padding: 4px 10px;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: #d8cfc4;
+}
+
+@media (max-width: 860px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}

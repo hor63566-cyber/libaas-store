@@ -1,0 +1,312 @@
+/* Navbar — announcement bar, nav row, live search, cart */
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #fff;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.announce {
+  background: var(--brand);
+  color: #fff;
+  text-align: center;
+  font-size: 0.82rem;
+  letter-spacing: 0.5px;
+  padding: 8px 12px;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  width: min(1280px, 94%);
+  margin: 0 auto;
+  padding: 14px 0;
+}
+
+.logo {
+  font-size: 1.7rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: var(--brand);
+  text-transform: uppercase;
+}
+
+.links {
+  display: flex;
+  gap: 22px;
+  list-style: none;
+}
+
+.links a {
+  font-size: 0.92rem;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  padding: 6px 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.links a:hover {
+  color: var(--brand);
+  border-bottom-color: var(--brand);
+}
+
+.burger {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+  cursor: pointer;
+}
+
+/* ---------- Prominent live search ---------- */
+
+.searchWrap {
+  position: relative;
+  flex: 1;
+  max-width: 460px;
+  margin-left: auto;
+}
+
+.search {
+  display: flex;
+  border: 2px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+  background: var(--bg-soft);
+  transition: border-color 0.2s ease;
+}
+
+.search:focus-within {
+  border-color: var(--brand);
+  background: #fff;
+}
+
+.search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  padding: 10px 18px;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.search input:focus {
+  outline: none;
+}
+
+.search button {
+  border: none;
+  background: var(--brand);
+  color: #fff;
+  font-size: 1.05rem;
+  padding: 0 20px;
+  cursor: pointer;
+}
+
+.search button:hover {
+  background: var(--brand-dark);
+}
+
+/* Suggestion dropdown */
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  z-index: 200;
+}
+
+.dropMsg {
+  padding: 14px 18px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.suggestion {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  cursor: pointer;
+  text-align: left;
+}
+
+.suggestion:hover {
+  background: var(--bg-soft);
+}
+
+.suggestion img {
+  width: 44px;
+  height: 58px;
+  object-fit: cover;
+  border-radius: 6px;
+}
+
+.sugInfo {
+  display: flex;
+  flex-direction: column;
+}
+
+.sugName {
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.sugPrice {
+  font-size: 0.85rem;
+  color: var(--brand);
+  font-weight: 700;
+}
+
+.viewAll {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background: var(--bg-soft);
+  color: var(--brand);
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.viewAll:hover {
+  background: var(--line);
+}
+
+/* ---------- Cart + wishlist icon buttons ---------- */
+
+.iconBtn {
+  position: relative;
+  font-size: 1.5rem;
+  padding: 6px;
+  color: var(--ink);
+  text-decoration: none;
+  line-height: 1;
+}
+
+.iconBtn:hover {
+  color: var(--brand);
+}
+
+.cartBtn {
+  position: relative;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 6px;
+}
+
+/* ---------- Auth button / logged-in state ---------- */
+
+.authBtn {
+  border: 2px solid var(--brand);
+  color: var(--brand);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 8px 18px;
+  border-radius: 999px;
+  white-space: nowrap;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.authBtn:hover {
+  background: var(--brand);
+  color: #fff;
+}
+
+.account {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.userName {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.authLink {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.authLink:hover {
+  color: var(--brand);
+}
+
+.badge {
+  position: absolute;
+  top: -2px;
+  right: -4px;
+  background: var(--brand);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  min-width: 19px;
+  height: 19px;
+  line-height: 19px;
+  text-align: center;
+  border-radius: 999px;
+  padding: 0 4px;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 860px) {
+  .nav {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .burger {
+    display: block;
+  }
+
+  .links {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 0;
+    order: 4;
+  }
+
+  .links.open {
+    display: flex;
+  }
+
+  .links li {
+    border-top: 1px solid var(--line);
+  }
+
+  .links a {
+    display: block;
+    padding: 12px 4px;
+  }
+
+  .searchWrap {
+    order: 3;
+    flex: 1 1 100%;
+    max-width: none;
+    margin-left: 0;
+  }
+}

@@ -1,0 +1,47 @@
+/* Homepage extras */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+.empty {
+  text-align: center;
+  color: var(--muted);
+  padding: 24px 0;
+}
+
+.center {
+  text-align: center;
+  margin-top: 28px;
+}
+
+.trust {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  text-align: center;
+}
+
+.trust h3 {
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.trust p {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .trust {
+    grid-template-columns: 1fr;
+  }
+}
